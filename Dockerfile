@@ -1,6 +1,6 @@
 FROM python:3.11
 WORKDIR /usr/src/app
 COPY . .
-RUN npm install
+RUN pip install -r requirements.txt
 EXPOSE 80
-CMD [ "npm", "start", "pytest", "-s", "-v" ]
+CMD [ "pytest", "-s", "-v" ]
