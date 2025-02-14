@@ -1,11 +1,11 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 
-// https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()], 
-  root: './',  // Путь к корневой директории
+  plugins: [react()],
+  root: './',  // Если index.html в корне, то корень остается как есть
+  publicDir: 'public',  // Указываем Vite искать статические файлы в public
   build: {
     outDir: 'dist',
   },
-})
+});
