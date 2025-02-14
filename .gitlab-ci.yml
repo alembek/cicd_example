@@ -1,20 +1,28 @@
+image: node:16
 
-stages:          # List of stages for jobs, and their order of execution
+stages:
   - build
-  - test
   - deploy
 
-build-job:       # This job runs in the build stage, which runs first.
+cache:
+  paths:
+    - node_modules/
+
+before_script:
+  - npm install
+
+build:
   stage: build
   script:
-    - docker build -t my-backend-image .
+    - npm run build
+  artifacts:
+    paths:
+      - dist/
 
-unit-test-job:   # This job runs in the test stage.
-  stage: test    # It only starts when the job in the build stage completes successfully.
+deploy:
+  stage: deploy
   script:
-    - docker run --rm my-backend-image pytest -s -v
-
-deploy-job:      # This job runs in the deploy stage.
-  stage: deploy  # It only runs when *both* jobs in the test stage complete successfully.
-  script:
-   - docker compose up -d
+    - npm install -g serve
+    - serve -s dist
+  only:
+    - master
