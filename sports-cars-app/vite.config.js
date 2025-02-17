@@ -7,7 +7,7 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        main: 'dist/index.html', // Important: Point to dist/index.html
+        main: 'public/index.html', // Important: Point to dist/index.html
       },
     },
   },
