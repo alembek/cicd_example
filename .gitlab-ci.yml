@@ -9,7 +9,7 @@ build:
   script:
     - npm install
     - npm run build
-    - cp -r public/* dist/
+    - cp -r build dist/
   artifacts:
     paths:
       - dist/  # The 'dist' folder is the standard output for Vite builds
