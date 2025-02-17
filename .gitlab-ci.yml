@@ -8,8 +8,8 @@ build:
   stage: build
   script:
     - npm install
-    - cp -r build dist/
     - npm run build
+    - cp -r public/* dist/
   artifacts:
     paths:
       - dist/  # The 'dist' folder is the standard output for Vite builds
