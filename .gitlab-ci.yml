@@ -8,6 +8,7 @@ build:
   stage: build
   script:
     - npm install
+    - cp -r build dist/
     - npm run build
   artifacts:
     paths:
