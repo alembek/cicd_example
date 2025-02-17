@@ -4,25 +4,22 @@ stages:
   - build
   - deploy
 
-cache:
-  paths:
-    - node_modules/
-
-before_script:
-  - npm install
-
 build:
   stage: build
   script:
+    - npm install
     - npm run build
   artifacts:
     paths:
-      - dist/
+      - dist/  # The 'dist' folder is the standard output for Vite builds
+    expire_in: 1 week
 
 deploy:
   stage: deploy
+  image: alpine:latest # Use a smaller image for deployment
+  before_script:
+    - apk add --no-cache rsync  # Install rsync for efficient file transfer
   script:
-    - npm install -g serve
-    - serve -s dist
+    - rsync -avz dist/ /var/www/html/1st/ # Deploy to correct path
   only:
     - master
